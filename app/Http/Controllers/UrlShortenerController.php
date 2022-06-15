@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UrlShortenerRequest;
 use App\Services\UrlShortenerService;
+use Illuminate\Http\JsonResponse;
 
 class UrlShortenerController extends Controller
 {
@@ -11,14 +12,16 @@ class UrlShortenerController extends Controller
     {
     }
 
-    public function create(UrlShortenerRequest $request)
+    public function create(UrlShortenerRequest $request): JsonResponse
     {
         $data = $request->validated();
-        return $this->service->setFullUrl($data['full_url'])->encodeUrl();
+        $encodedUrl = $this->service->setFullUrl($data['full_url'])->encodeUrl();
+        return $this->payload(['short_url' => $encodedUrl->short_url]);
     }
 
-    public function show(string $link)
+    public function show(string $link): JsonResponse
     {
-       return $this->service->setShortUrl($link)->decodeUrl();
+        $decodedUrl = $this->service->setShortUrl($link)->decodeUrl();
+        return $this->payload(['short_url' => $decodedUrl->full_url]);
     }
 }

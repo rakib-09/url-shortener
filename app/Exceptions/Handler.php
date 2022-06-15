@@ -49,6 +49,7 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (\RuntimeException $e, $request) {
             return response()->json([
+                'status' => 'error',
                 'message' => $e->getMessage()
             ], 400);
         });
