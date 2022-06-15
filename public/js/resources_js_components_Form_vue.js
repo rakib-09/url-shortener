@@ -41,7 +41,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/v1/url-shortener', {
         'full_url': this.full_url
-      }).then(function (res) {})["catch"](function (err) {
+      }).then(function (res) {
+        _this.msg = "<h4>ShortUrl:</h4> " + "<b>" + window.location + "/" + res.data.data.short_url + "</b>";
+      })["catch"](function (err) {
         _this.hasError = true;
         _this.msg = err.response.data.message;
       });
@@ -174,11 +176,15 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _vm.hasError
+      _vm.msg.length > 0
         ? _c(
             "div",
-            { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-            [_vm._v("\n        " + _vm._s(_vm.msg) + "\n    ")]
+            {
+              staticClass: "alert",
+              class: _vm.hasError ? "alert-danger" : "alert-primary",
+              attrs: { role: "alert" },
+            },
+            [_c("span", { domProps: { innerHTML: _vm._s(_vm.msg) } })]
           )
         : _vm._e(),
       _vm._v(" "),
