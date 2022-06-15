@@ -1,10 +1,9 @@
 <template>
     <app-layout>
         <template slot="content">
-            <UrlShortenerForm />
+            <redirectCard />
         </template>
     </app-layout>
-
 </template>
 
 <script>
@@ -13,7 +12,7 @@ export default {
     name: "main",
     components: {
         AppLayout,
-        'UrlShortenerForm': () => import("../components/form")
+        'redirectCard': () => import("../components/RedirectCard")
     }
 }
 </script>
