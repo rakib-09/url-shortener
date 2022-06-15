@@ -22,6 +22,6 @@ class UrlShortenerController extends Controller
     public function show(string $link): JsonResponse
     {
         $decodedUrl = $this->service->setShortUrl($link)->decodeUrl();
-        return $this->payload(['short_url' => $decodedUrl->full_url]);
+        return $this->payload(['full_url' => $decodedUrl->full_url]);
     }
 }
