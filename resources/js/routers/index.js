@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import main from '../views/main'
+import mainPage from '../views/main'
 import redirect from '../views/redirect'
 
 Vue.use(VueRouter);
@@ -10,13 +10,14 @@ export default new VueRouter({
     routes: [
         {
             path: '/home',
-            component: main,
+            component: mainPage,
             name: 'main',
         },
         {
             path: '/home/:shorturl',
             component: redirect,
             name: 'redirect',
+            props: true
         }
     ],
 

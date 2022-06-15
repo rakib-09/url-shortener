@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "form",
+    name: "mainForm",
     data() {
         return {
             full_url: '',

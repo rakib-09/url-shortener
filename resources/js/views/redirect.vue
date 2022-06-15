@@ -9,7 +9,7 @@
 <script>
 import AppLayout from "../components/AppLayout";
 export default {
-    name: "main",
+    name: "redirect",
     components: {
         AppLayout,
         'redirectCard': () => import("../components/RedirectCard")

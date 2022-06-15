@@ -16,7 +16,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "RedirectCard"
+  name: "RedirectCard",
+  data: function data() {
+    return {
+      'shorturl': '',
+      'msg': 'Redirecting....',
+      'hasError': false
+    };
+  },
+  mounted: function mounted() {
+    this.shorturl = this.$route.params.shorturl;
+    this.getFullUrl();
+  },
+  methods: {
+    getFullUrl: function getFullUrl() {
+      var _this = this;
+
+      axios.get('/api/v1/url-shortener/' + this.shorturl).then(function (res) {
+        window.location.href = res.data.data.full_url;
+      })["catch"](function (err) {
+        _this.hasError = true;
+        _this.msg = err.response.data.message;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -105,7 +128,9 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h3", [_vm._v("Redirecting....")])
+  return _c("h3", { style: _vm.hasError ? "color: red" : "color: green" }, [
+    _vm._v(_vm._s(_vm.msg)),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -9,7 +9,7 @@
 <script>
 import AppLayout from "../components/AppLayout";
 export default {
-    name: "main",
+    name: "mainPage",
     components: {
         AppLayout,
         'UrlShortenerForm': () => import("../components/Form")

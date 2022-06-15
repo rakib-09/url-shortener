@@ -5410,7 +5410,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "main",
+  name: "mainPage",
   components: {
     AppLayout: _components_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     'UrlShortenerForm': function UrlShortenerForm() {
@@ -5443,7 +5443,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "main",
+  name: "redirect",
   components: {
     AppLayout: _components_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     'redirectCard': function redirectCard() {
@@ -5567,7 +5567,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
   }, {
     path: '/home/:shorturl',
     component: _views_redirect__WEBPACK_IMPORTED_MODULE_1__["default"],
-    name: 'redirect'
+    name: 'redirect',
+    props: true
   }]
 }));
 
