@@ -5391,6 +5391,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "home",
   data: function data() {
@@ -5406,24 +5408,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/v1/url-shortener', {
         'full_url': this.full_url
-      }).then(function (res) {
-        console.log(res);
-        return;
-
-        if (res.data.code === 200) {
-          _this.hasError = false;
-          _this.msg = 'Successfully updated the password please login';
-          setTimeout(function () {
-            this.$router.push({
-              'name': 'login'
-            });
-          }, 1000);
-        } else {
-          _this.hasError = true;
-          _this.msg = res.data.message;
-        }
-      })["catch"](function (err) {
-        console.log(err);
+      }).then(function (res) {})["catch"](function (err) {
+        _this.hasError = true;
+        _this.msg = err.response.data.message;
       });
     }
   }
@@ -28130,14 +28117,22 @@ var render = function () {
                   }),
                 ]),
                 _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticStyle: { padding: "40px" },
-                    style: _vm.hasError ? "color: red" : "",
-                  },
-                  [_vm._v(_vm._s(_vm.msg))]
-                ),
+                _vm.hasError
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "alert alert-danger",
+                        attrs: { role: "alert" },
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.msg) +
+                            "\n                        "
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0),
               ]
