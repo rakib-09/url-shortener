@@ -42,6 +42,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/v1/url-shortener', {
         'full_url': this.full_url
       }).then(function (res) {
+        _this.hasError = false;
         _this.msg = "<h4>ShortUrl:</h4> " + "<b>" + window.location + "/" + res.data.data.short_url + "</b>";
       })["catch"](function (err) {
         _this.hasError = true;

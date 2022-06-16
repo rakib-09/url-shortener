@@ -28,6 +28,7 @@ export default {
             axios.post('/api/v1/url-shortener', {
                 'full_url': this.full_url
             }).then(res => {
+                this.hasError = false
                 this.msg = "<h4>ShortUrl:</h4> " + "<b>" + window.location + "/" + res.data.data.short_url + "</b>"
             }).catch(err => {
                 this.hasError = true

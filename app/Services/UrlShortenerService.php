@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Contracts\UrlEngineContract;
 use App\Contracts\UrlVerificationContract;
 use App\Models\Link;
 use App\Repository\LinkRepository;
+use Illuminate\Database\QueryException;
 use RuntimeException;
 
 class UrlShortenerService extends Service
@@ -13,7 +15,7 @@ class UrlShortenerService extends Service
     private string $shortUrl;
 
     public function __construct(
-        private ShortenerEngine $engine,
+        private UrlEngineContract $engine,
         private LinkRepository $repository,
         private UrlVerificationContract $urlVerifier
     ) {
@@ -44,17 +46,22 @@ class UrlShortenerService extends Service
      */
     public function encodeUrl(): Link
     {
-        $linkRepo = $this->repository->setFullUrl($this->fullUrl);
-        $encodedUrl = $linkRepo->getByFullUrl();
-        if ($encodedUrl) {
-            return $encodedUrl;
+        try {
+            $linkRepo = $this->repository->setFullUrl($this->fullUrl);
+            $encodedUrl = $linkRepo->getByFullUrl();
+            if ($encodedUrl) {
+                return $encodedUrl;
+            }
+            if (!$this->urlVerifier->isSafeUrl($this->fullUrl)) {
+                throw new RuntimeException("Unsafe URL!");
+            }
+
+            return $this->insertIntoDB($linkRepo);
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1062) {
+                return $this->insertIntoDB($linkRepo);
+            }
         }
-        if ($this->urlVerifier->isSafeUrl($this->fullUrl)) {
-            $id = UniqueIdGenerator::getId();
-            $shortUrl = $this->engine->encoder($id);
-            return $linkRepo->setId($id)->setShortUrl($shortUrl)->create();
-        }
-        throw new RuntimeException("Unsafe URL!");
     }
 
     /**
@@ -71,5 +78,12 @@ class UrlShortenerService extends Service
             }
         }
         throw new RuntimeException('Sorry! invalid URL.');
+    }
+
+    private function insertIntoDB($linkRepo)
+    {
+        $id = UniqueIdGenerator::getId();
+        $shortUrl = $this->engine->encoder($id);
+        return $linkRepo->setId($id)->setShortUrl($shortUrl)->create();
     }
 }

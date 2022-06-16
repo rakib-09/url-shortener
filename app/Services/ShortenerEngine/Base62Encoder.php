@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\ShortenerEngine;
 
 use App\Constants\AlphaChars;
 use App\Constants\InvChars;
 use App\Contracts\UrlEngineContract;
 
-class ShortenerEngine implements UrlEngineContract
+class Base62Encoder implements UrlEngineContract
 {
     /** @var int */
     private const BASE = 62;

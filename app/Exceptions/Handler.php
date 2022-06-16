@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Psr\Log\LogLevel;
-use RuntimeException;
+use Exception;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
             //
         });
 
-        $this->renderable(function (RuntimeException $e, $request) {
+        $this->renderable(function (Exception $e, $request) {
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage()

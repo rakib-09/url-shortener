@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\UrlEngineContract;
-use App\Services\ShortenerEngine;
+use App\Services\ShortenerEngine\Base62Encoder;
 use Illuminate\Support\ServiceProvider;
 
 class UrlEngineProvider extends ServiceProvider
@@ -25,6 +25,6 @@ class UrlEngineProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(UrlEngineContract::class, ShortenerEngine::class);
+        $this->app->bind(UrlEngineContract::class, Base62Encoder::class);
     }
 }
