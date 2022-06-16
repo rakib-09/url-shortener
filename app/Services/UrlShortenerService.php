@@ -69,8 +69,7 @@ class UrlShortenerService extends Service
      */
     public function decodeUrl(): Link
     {
-        $filteredUrl = str_replace('base_url', '', $this->shortUrl);
-        $id = $this->engine->decoder($filteredUrl);
+        $id = $this->engine->decoder($this->shortUrl);
         if ($id) {
             $link = $this->repository->setId($id)->getById();
             if ($link) {
