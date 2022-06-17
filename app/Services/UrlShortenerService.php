@@ -27,7 +27,7 @@ class UrlShortenerService extends Service
      */
     public function setFullUrl(string $fullUrl): UrlShortenerService
     {
-        $this->fullUrl = $fullUrl;
+        $this->fullUrl = rtrim($fullUrl, '/');
         return $this;
     }
 
