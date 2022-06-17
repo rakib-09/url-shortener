@@ -8,7 +8,7 @@ A Base62 encode based URL shortener using Laravel & Vue
 2. Update your `.env` information like, Database info, google safe browsing details, etc.
 3. run `composer install`.
 4. Then run `npm install && npm run dev`.
-5. You can import `mysqldb.sql` into your database or run `php artisan migrate`.
+5. You can import `url_shortener_dump.sql` into your database or run `php artisan migrate`.
 6. Run `php artisan config:cache` to cache all config files.
 7. Then `php artisan serve`.
 8. You will see your project will be up & running.
