@@ -54,7 +54,7 @@ class GoogleVerificationService implements UrlVerificationContract
      */
     private function getApiResponse(string $url): array|string
     {
-        $googleUrl = $this->googleUrl . '?key=' . $this->apiKey;
+        $googleUrl = $this->googleUrl . $this->apiKey;
         $data = [
             'client' => [
                 'clientId' => $this->clientId,

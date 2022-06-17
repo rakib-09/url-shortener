@@ -4,7 +4,7 @@ return [
     'google' => [
         'url' => env(
             'SAFE_BROWSING_GOOGLE_URL',
-            'https://safebrowsing.googleapis.com/v4/threatMatches:find'
+            'https://safebrowsing.googleapis.com/v4/threatMatches:find?key='
         ),
         'api_key' => env('SAFE_BROWSING_GOOGLE_API_KEY', null),
         'timeout' => 30,
