@@ -35,4 +35,5 @@ A Base62 encode based URL shortener using Laravel & Vue
 ## Things can be done for further development
 
 * Implement Docker.
+* Add DTO for better Type Hint experience.
 * Implement another website to check valid websites.
