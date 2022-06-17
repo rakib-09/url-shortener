@@ -4,7 +4,7 @@ namespace App\Contracts;
 
 interface UrlEngineContract
 {
-    public function encoder($id): string;
+    public function encoder(int $id): string;
 
-    public function decoder($shortUrl): int|string;
+    public function decoder(string $shortUrl): int|string;
 }

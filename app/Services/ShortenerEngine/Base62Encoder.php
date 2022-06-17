@@ -11,7 +11,7 @@ class Base62Encoder implements UrlEngineContract
     /** @var int */
     private const BASE = 62;
 
-    public function encoder($id): string
+    public function encoder(int $id): string
     {
         $shortUrl = '';
         while ($id > 0) {
@@ -23,7 +23,7 @@ class Base62Encoder implements UrlEngineContract
         return $shortUrl;
     }
 
-    public function decoder($shortUrl): int
+    public function decoder(string $shortUrl): int
     {
         $count = strlen($shortUrl) - 1;
         $baseId = 0;

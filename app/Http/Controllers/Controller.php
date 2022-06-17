@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function payload($data, int $statusCode = 200): JsonResponse
+    public function payload(array $data, int $statusCode = 200): JsonResponse
     {
         $data = [
             'status' => 'success',

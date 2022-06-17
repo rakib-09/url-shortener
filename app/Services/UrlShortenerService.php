@@ -61,6 +61,7 @@ class UrlShortenerService extends Service
             if ($e->errorInfo[1] === 1062) {
                 return $this->insertIntoDB($linkRepo);
             }
+            throw new RuntimeException("Something went wrong!");
         }
     }
 
@@ -79,7 +80,11 @@ class UrlShortenerService extends Service
         throw new RuntimeException('Sorry! invalid URL.');
     }
 
-    private function insertIntoDB($linkRepo)
+    /**
+     * @param LinkRepository $linkRepo
+     * @return Link
+     */
+    private function insertIntoDB(LinkRepository $linkRepo): Link
     {
         $id = UniqueIdGenerator::getId();
         $shortUrl = $this->engine->encoder($id);
