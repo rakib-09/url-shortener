@@ -6,13 +6,13 @@ A Base62 encode based URL shortener using Laravel & Vue
 
 1. Open Terminal and Run `cp .env.example .env`
 2. Update your `.env` information like, Database info, google safe browsing details, etc.
-3. Run `php artisan key:generate`.
-4. Run `composer install`.
+3. Run `composer install`.
+4. Run `php artisan key:generate`.
 5. Then run `npm install && npm run dev`.
 6. You can import `url_shortener_dump.sql` into your database or run `php artisan migrate`.
 7. Run `php artisan optimize` to cache all config files.
 8. Then `php artisan serve`.
-9. You will see your project will be up & running.
+9. You will see the project will be up & running.
 10. ALL DONE !!
 11. Just open browser and hit `http://localhost:8000`.
 
